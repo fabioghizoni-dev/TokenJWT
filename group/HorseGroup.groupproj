@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{7D7A9973-5D23-43A0-B027-629F792924C9}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\vcl\dproj\HorseVCL.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="HorseVCL">
+        <MSBuild Projects="..\vcl\dproj\HorseVCL.dproj"/>
+    </Target>
+    <Target Name="HorseVCL:Clean">
+        <MSBuild Projects="..\vcl\dproj\HorseVCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HorseVCL:Make">
+        <MSBuild Projects="..\vcl\dproj\HorseVCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="HorseVCL"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="HorseVCL:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="HorseVCL:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
